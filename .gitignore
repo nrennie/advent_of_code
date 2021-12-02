@@ -4,6 +4,7 @@
 
 # Session Data files
 .RData
+2021/Data/
 
 # User-specific files
 .Ruserdata
@@ -19,6 +20,7 @@
 
 # RStudio files
 .Rproj.user/
+advent_of_code.Rproj
 
 # produced vignettes
 vignettes/*.html
