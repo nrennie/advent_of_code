@@ -1,7 +1,7 @@
 ## Day 3
+library(dplyr)
 
 #### Part 1 ####
-
 day_3_1 <- function(input_matrix){
   d <- colSums(input_matrix) > 0.5*nrow(input_matrix)
   epsilon <- strtoi(paste(as.numeric(d), sep="", collapse=""), base = 2)
@@ -10,18 +10,8 @@ day_3_1 <- function(input_matrix){
 }
 
 #test
-x1 <- matrix(c(0,0,1,0,0,
-              1,1,1,1,0,
-              1,0,1,1,0,
-              1,0,1,1,1,
-              1,0,1,0,1,
-              0,1,1,1,1,
-              0,0,1,1,1,
-              1,1,1,0,0,
-              1,0,0,0,0,
-              1,1,0,0,1,
-              0,0,0,1,0,
-              0,1,0,1,0), ncol=5, byrow=T)
+x1_raw <- read.delim("2021/Data/3_1_test.txt", header = F, colClasses="character")[,1]
+x1 <- matrix(as.numeric(unlist(strsplit(x1_raw, split=""))), byrow=T, ncol=nchar(x1_raw[1]))
 day_3_1(x1)            
              
 #answer
@@ -31,8 +21,6 @@ day_3_1(x2)
 
 
 #### Part 2 ####
-
-library(dplyr)
 day_3_2 <- function(input_matrix){
   colnames(input_matrix) <- 1:ncol(input_matrix)
   input <- tibble::as_tibble(input_matrix)

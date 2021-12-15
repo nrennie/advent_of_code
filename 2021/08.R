@@ -1,11 +1,8 @@
 ## Day 8
-
-#### part 1 ####
 library(stringr)
 
+#### part 1 ####
 count_1478 <- function(input){
-  #output1 <- str_split(input, pattern = "\\| ")[[1]][2]
-  #output2 <- str_length(str_split(output1, " ")[[1]])
   length(which(nchar(input) %in% c(2,3,4,7)))
 }
 count_1478(input)
@@ -71,9 +68,6 @@ value_match <- function(input){
   #2
   output_df[3, 1] <- new_options_5[!k5]
   
-  
-
-  #return output
   return(output_df)
 }
 

@@ -1,8 +1,7 @@
 ## Day 10
+library(stringr)
 
 #### part 1 ####
-
-library(stringr)
 data_prep <- function(input){
   unlist(str_split(input, ""))
 }
@@ -52,13 +51,6 @@ output <- unlist(lapply(data_input, function(x) check_corrupt(x)))
 answer <- sum(table(output)*c(3, 57, 1197, 25137, 0))
 
 #### part 2 ####
-
-#retrn false versions
-#mirror to complete
-#get score
-#sort scores
-#middle value 
-
 check_incomplete <- function(x){
   output <- remove_pair_iter(x)
   if (all(output %in% left) | all(output %in% right)){

@@ -1,8 +1,7 @@
 ## Day 2
+library(magrittr)
 
 #### part 1 ####
-
-library(magrittr)
 day_2_1 <- function(input){
   d <- tibble::as_tibble(matrix(unlist(stringr::str_split(input, pattern=" ")), byrow=T, ncol=2)) %>%
     dplyr::mutate(V2 = as.numeric(V2))
@@ -19,12 +18,7 @@ day_2_1 <- function(input){
 }
 
 #test
-x1 <- c("forward 5", 
-        "down 5",
-        "forward 8",
-        "up 3",
-        "down 8",
-        "forward 2")
+x1 <- read.delim("2021/Data/2_1_test.txt", header = F)[,1]
 day_2_1(x1)
 
 #answer
@@ -33,7 +27,6 @@ day_2_1(x2)
 
 
 #### part 2 ####
-
 day_2_2 <- function(input){
   d <- tibble::as_tibble(matrix(unlist(stringr::str_split(input, pattern=" ")), byrow=T, ncol=2)) %>%
     dplyr::mutate(V2 = as.numeric(V2))

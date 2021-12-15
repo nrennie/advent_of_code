@@ -1,7 +1,6 @@
 ## Day 5
 
 #### part 1 ####
-
 day_5_1 <- function(x1){
   d1 <- data.frame(start_x = as.numeric(substring(x1[,1], 1, regexpr(",",x1[,1])-1)),
                    end_x = as.numeric(substring(x1[,3], 1, regexpr(",",x1[,3])-1)),

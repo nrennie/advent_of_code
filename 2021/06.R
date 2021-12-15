@@ -12,7 +12,6 @@ transform_state <- function(s){
 
 day_6_1 <- function(init_state, days){
   for (i in 1:days){
-    print(i)
     #first day 
     if (i == 1){
       current <- c()
@@ -35,11 +34,11 @@ day_6_1 <- function(init_state, days){
 }
 
 #test
-init_state <- c(3,4,3,1,2)
+init_state <- as.numeric(unname(read.delim("2021/Data/6_1_test.txt", header = F, sep = ",")))
 day_6_1(init_state, 80)
 
 #answer
-init_state <- c(1,1,3,5,1,1,1,4,1,5,1,1,1,1,1,1,1,3,1,1,1,1,2,5,1,1,1,1,1,2,1,4,1,4,1,1,1,1,1,3,1,1,5,1,1,1,4,1,1,1,4,1,1,3,5,1,1,1,1,4,1,5,4,1,1,2,3,2,1,1,1,1,1,1,1,1,1,1,1,1,1,5,1,1,1,1,1,1,1,1,2,2,1,1,1,1,1,5,1,1,1,3,4,1,1,1,1,3,1,1,1,1,1,4,1,1,3,1,1,3,1,1,1,1,1,3,1,5,2,3,1,2,3,1,1,2,1,2,4,5,1,5,1,4,1,1,1,1,2,1,5,1,1,1,1,1,5,1,1,3,1,1,1,1,1,1,4,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,3,2,1,1,1,1,2,2,1,2,1,1,1,5,5,1,1,1,1,1,1,1,1,1,1,1,1,2,2,1,1,4,2,1,4,1,1,1,1,1,1,1,2,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,1,5,1,1,1,1,1,1,1,1,3,1,1,3,3,1,1,1,3,5,1,1,4,1,1,1,1,1,4,1,1,3,1,1,1,1,1,1,1,1,2,1,5,1,1,1,1,1,1,1,1,1,1,4,1,1,1,1)
+init_state <- as.numeric(unname(read.delim("2021/Data/6_1.txt", header = F, sep = ",")))
 day_6_1(init_state, 80)
 
 
@@ -60,36 +59,15 @@ day_6_2 <- function(init_state, days){
 }
 
 #test
-init_state <- c(3,4,3,1,2)
+init_state <- as.numeric(unname(read.delim("2021/Data/6_1_test.txt", header = F, sep = ",")))
 day_6_2(init_state, 256)
 
 #answer
-init_state <- c(1,1,3,5,1,1,1,4,1,5,1,1,1,1,1,1,1,3,1,1,1,1,2,5,1,1,1,1,1,2,1,4,1,4,1,1,1,1,1,3,1,1,5,1,1,1,4,1,1,1,4,1,1,3,5,1,1,1,1,4,1,5,4,1,1,2,3,2,1,1,1,1,1,1,1,1,1,1,1,1,1,5,1,1,1,1,1,1,1,1,2,2,1,1,1,1,1,5,1,1,1,3,4,1,1,1,1,3,1,1,1,1,1,4,1,1,3,1,1,3,1,1,1,1,1,3,1,5,2,3,1,2,3,1,1,2,1,2,4,5,1,5,1,4,1,1,1,1,2,1,5,1,1,1,1,1,5,1,1,3,1,1,1,1,1,1,4,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,3,2,1,1,1,1,2,2,1,2,1,1,1,5,5,1,1,1,1,1,1,1,1,1,1,1,1,2,2,1,1,4,2,1,4,1,1,1,1,1,1,1,2,1,2,1,1,1,1,1,1,1,1,1,1,1,1,1,2,2,1,5,1,1,1,1,1,1,1,1,3,1,1,3,3,1,1,1,3,5,1,1,4,1,1,1,1,1,4,1,1,3,1,1,1,1,1,1,1,1,2,1,5,1,1,1,1,1,1,1,1,1,1,4,1,1,1,1)
-
-#run for 128 days for each starting state
-current_128_0 <- day_6_2(0, 128)
-current_128_1 <- day_6_2(1, 128)
-current_128_2 <- day_6_2(2, 128)
-current_128_3 <- day_6_2(3, 128)
-current_128_4 <- day_6_2(4, 128)
-current_128_5 <- day_6_2(5, 128)
-current_128_6 <- day_6_2(6, 128)
-current_128_7 <- day_6_2(7, 128)
-current_128_8 <- day_6_2(8, 128)
+init_state <- as.numeric(unname(read.delim("2021/Data/6_1.txt", header = F, sep = ",")))
+k <- lapply(0:8, function(x) day_6_2(x, 128))
+current_128 <- lengths(k)
+day <- unlist(lapply(2:6, function(x) sum(table(k[[x]])*current_128)))
+answer <- sum(table(init_state)*day)
+format(answer, scientific = FALSE)
 
 
-current_128 <- c(length(current_128_0), length(current_128_1), length(current_128_2), length(current_128_3), 
-                 length(current_128_4), length(current_128_5), length(current_128_6), length(current_128_7),
-                 length(current_128_8))
-
-day1 <- sum(table(current_128_1)*current_128)
-day2 <- sum(table(current_128_2)*current_128)
-day3 <- sum(table(current_128_3)*current_128)
-day4 <- sum(table(current_128_4)*current_128)
-day5 <- sum(table(current_128_5)*current_128)
-
-day <- c(day1, day2, day3, day4, day5)
-
-#multiple by number of each state
-k <- sum(table(init_state)*day)
-format(k, scientific = FALSE)

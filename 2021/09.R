@@ -1,11 +1,8 @@
 ## Day 9
-
 library(igraph)
 library(stringr)
 
 #### part 1 ####
-
-
 day_9_1 <- function(input){
   output <- numeric()
   for (i in 1:nrow(input)){
