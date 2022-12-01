@@ -1,0 +1,94 @@
+---
+title: "Advent of Code 2022"
+author: "Nicola Rennie"
+format:
+    html:
+        theme: [custom.scss, sketchy]
+        embed-resources: true
+        
+---
+
+Code: [github.com/nrennie/advent_of_code](https://github.com/nrennie/advent_of_code)
+
+# Day 1
+
+## R
+
+#### Part 1
+```{r}
+#| echo: true
+#| eval: true
+#| message: false
+#| warning: false
+inputs <- readLines("Data/data_01.csv")
+calories <- list()
+elf <- 1
+for (i in inputs) {
+  if (i == "") {
+    elf = elf + 1
+  } else {
+    calories[[as.character(elf)]] = sum(calories[[as.character(elf)]]) + as.numeric(i)
+  }
+}
+max(unlist(calories))
+```
+
+#### Part 2
+```{r}
+#| echo: true
+#| eval: true
+sum(tail(sort(unlist(calories)), n = 3))
+```
+
+## Python
+
+#### Part 1
+```{python}
+#| echo: true
+#| eval: true
+data = open("Data/data_01.csv", "r")
+inputs = [e.strip() for e in data.readlines()]
+calories = {}
+elf = 1
+for i in inputs:
+  if i == "":
+    elf += 1
+  else:
+    calories[elf] = calories.get(elf, 0) + int(i)
+max(calories.values())
+```
+
+#### Part 2
+```{python}
+#| echo: true
+#| eval: true
+sum(sorted(calories.values(), reverse = True)[0:3])
+```
+
+## Julia
+
+#### Part 1
+```{julia}
+#| echo: true
+#| eval: true
+data = open("Data/data_01.csv", "r");
+inputs = readlines(data);
+calories = Dict();
+elf = 1;
+for i in inputs
+    if i == ""
+        global elf += 1
+    else
+        calories[elf] = get(calories, elf, 0) + parse(Int64, i)
+    end 
+end
+output = collect(values(calories));
+maximum(output)
+```
+
+#### Part 2
+```{julia}
+#| echo: true
+#| eval: true
+sum(sort(output, rev=true)[1:3])
+```

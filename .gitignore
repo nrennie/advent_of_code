@@ -6,6 +6,9 @@
 # Session Data files
 .RData
 2021/Data/
+2022/Data/
+2022/startup.jl
+2022/*.html
 
 # User-specific files
 .Ruserdata

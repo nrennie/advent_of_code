@@ -1,0 +1,4 @@
+- source: day_01.qmd
+  quarto-pub:
+    - id: 21b7bb62-c3cc-48c1-888f-de56d1377cb6
+      url: 'https://quartopub.com/sites/nrennie/advent-of-code-2022'
