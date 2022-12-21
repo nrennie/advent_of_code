@@ -1,0 +1,221 @@
+---
+title: "Advent of Code 2022"
+author: "Nicola Rennie"
+format:
+    html:
+        theme: [custom.scss, sketchy]
+        embed-resources: true
+        toc: true
+        toc-depth: 1
+---
+
+Code: [github.com/nrennie/advent_of_code](https://github.com/nrennie/advent_of_code)
+
+# Day 1
+
+## R
+
+#### Part 1
+```{r}
+#| echo: true
+#| eval: false
+#| message: false
+#| warning: false
+inputs <- readLines("Data/data_01.csv")
+calories <- list()
+elf <- 1
+for (i in inputs) {
+  if (i == "") {
+    elf = elf + 1
+  } else {
+    calories[[as.character(elf)]] = sum(calories[[as.character(elf)]]) + as.numeric(i)
+  }
+}
+max(unlist(calories))
+```
+
+#### Part 2
+```{r}
+#| echo: true
+#| eval: false
+sum(tail(sort(unlist(calories)), n = 3))
+```
+
+## Python
+
+#### Part 1
+```{python}
+#| echo: true
+#| eval: false
+data = open("Data/data_01.csv", "r")
+inputs = [e.strip() for e in data.readlines()]
+calories = {}
+elf = 1
+for i in inputs:
+  if i == "":
+    elf += 1
+  else:
+    calories[elf] = calories.get(elf, 0) + int(i)
+max(calories.values())
+```
+
+#### Part 2
+```{python}
+#| echo: true
+#| eval: false
+sum(sorted(calories.values(), reverse = True)[0:3])
+```
+
+## Julia
+
+#### Part 1
+```{julia}
+#| echo: true
+#| eval: false
+data = open("Data/data_01.csv", "r");
+inputs = readlines(data);
+calories = Dict();
+elf = 1;
+for i in inputs
+    if i == ""
+        global elf += 1
+    else
+        calories[elf] = get(calories, elf, 0) + parse(Int64, i)
+    end 
+end
+output = collect(values(calories));
+maximum(output)
+```
+
+#### Part 2
+```{julia}
+#| echo: true
+#| eval: false
+sum(sort(output, rev=true)[1:3])
+```
+
+<hr>
+
+# Day 2
+
+## R
+
+#### Part 1
+
+```{r}
+#| echo: true
+#| eval: false
+#| message: false
+#| warning: false
+library(dplyr)
+inputs <- read.delim("Data/data_02.txt", header = FALSE, sep = " ") |> 
+  tibble::as_tibble()
+inputs |> 
+  mutate(play_score = case_when(
+    V2 == "X" ~ 1,
+    V2 == "Y" ~ 2,
+    V2 == "Z" ~ 3
+  )) |> 
+  mutate(win_score = case_when(
+    V1 == "A" & V2 == "Y" | V1 == "B" & V2 == "Z" | V1 == "C" & V2 == "X"  ~ 6,
+    V1 == "A" & V2 == "X" | V1 == "B" & V2 == "Y" | V1 == "C" & V2 == "Z"~ 3,
+   TRUE ~ 0
+  )) |> 
+  mutate(total_score = play_score + win_score) |> 
+  pull(total_score) |> 
+  sum()
+```
+
+#### Part 2
+
+```{r}
+#| echo: true
+#| eval: false
+#| message: false
+#| warning: false
+inputs |> 
+  mutate(play_score = case_when(
+    V1 == "A" & V2 == "X" ~ 3, #Z
+    V1 == "A" & V2 == "Y" ~ 1, #X
+    V1 == "A" & V2 == "Z" ~ 2, #Y
+    
+    V1 == "B" & V2 == "X" ~ 1, #X
+    V1 == "B" & V2 == "Y" ~ 2, #Y
+    V1 == "B" & V2 == "Z" ~ 3, #Z
+    
+    V1 == "C" & V2 == "X" ~ 2, #Y
+    V1 == "C" & V2 == "Y" ~ 3, #Z
+    V1 == "C" & V2 == "Z" ~ 1  #X
+  )) |> 
+  mutate(win_score = case_when(
+    V2 == "X" ~ 0,
+    V2 == "Y" ~ 3,
+    V2 == "Z" ~ 6
+  )) |> 
+  mutate(total_score = play_score + win_score) |> 
+  pull(total_score) |> 
+  sum()
+```
+
+<hr>
+
+# Day 3
+
+## R
+
+#### Part 1
+
+```{r}
+#| echo: true
+#| eval: false
+#| message: false
+#| warning: false
+library(stringr)
+inputs <- read.delim("Data/data_03.txt", header = FALSE, sep = " ") |> 
+  tibble::as_tibble()
+inputs |> 
+  mutate(n_chars = as.numeric(nchar(V1))) |> 
+  mutate(half1 = str_sub(V1, 1, n_chars/2),
+         half2 = str_sub(V1, 1 + (n_chars/2), n_chars)) |> 
+  select(-V1) |> 
+  mutate(in_both = purrr::map2_chr(.x = half1, .y = half2,
+                                   .f = ~intersect(str_split_1(.x, pattern = ""), 
+                                                   str_split_1(.y, pattern = "")))) |> 
+  mutate(is_lower = str_detect(in_both,"[[:lower:]]")) |> 
+  mutate(in_both = str_to_lower(in_both)) |> 
+  mutate(value = unlist(purrr::map(.x = in_both, .f = ~which(letters == .x)))) |>
+  mutate(value = as.numeric(value)) |> 
+  mutate(value = case_when(is_lower == FALSE ~ (26 + value),
+                          TRUE ~ value)) |> 
+  pull(value) |> 
+  sum()
+```
+
+#### Part 2
+
+```{r}
+#| echo: true
+#| eval: false
+#| message: false
+#| warning: false
+get_letter <- function(x) {
+  intersect(
+    intersect(
+      str_split_1(unlist(inputs_list[x][[1]]["V1"][1,]), pattern = ""),
+      str_split_1(unlist(inputs_list[x][[1]]["V1"][2,]), pattern = "")),
+    str_split_1(unlist(inputs_list[x][[1]]["V1"][3,]), pattern = ""))
+}
+inputs_list <- inputs |> 
+  mutate(group = rep(1:(nrow(inputs)/3), each = 3)) |> 
+  group_by(group) |> 
+  group_split() 
+tibble(letter = purrr::map_chr(.x = 1:(nrow(inputs)/3), .f = ~get_letter(.x))) |> 
+  mutate(is_lower = str_detect(letter,"[[:lower:]]")) |> 
+  mutate(letter = str_to_lower(letter)) |> 
+  mutate(value = unlist(purrr::map(.x = letter, .f = ~which(letters == .x)))) |>
+  mutate(value = as.numeric(value)) |> 
+  mutate(value = case_when(is_lower == FALSE ~ (26 + value),
+                           TRUE ~ value)) |> 
+  pull(value) |> 
+  sum()
+```

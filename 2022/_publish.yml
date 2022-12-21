@@ -2,3 +2,7 @@
   quarto-pub:
     - id: 21b7bb62-c3cc-48c1-888f-de56d1377cb6
       url: 'https://quartopub.com/sites/nrennie/advent-of-code-2022'
+- source: advent_of_code.qmd
+  quarto-pub:
+    - id: 464cb584-dbca-4868-8a61-64dc9fd76733
+      url: 'https://quartopub.com/sites/nrennie/advent-of-code-2022'
