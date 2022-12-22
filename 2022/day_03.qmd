@@ -1,0 +1,58 @@
+## R
+
+#### Part 1
+
+```{r}
+#| echo: true
+#| eval: false
+#| message: false
+#| warning: false
+library(stringr)
+inputs <- read.delim("Data/data_03.txt", header = FALSE, sep = " ") |> 
+  tibble::as_tibble()
+inputs |> 
+  mutate(n_chars = as.numeric(nchar(V1))) |> 
+  mutate(half1 = str_sub(V1, 1, n_chars/2),
+         half2 = str_sub(V1, 1 + (n_chars/2), n_chars)) |> 
+  select(-V1) |> 
+  mutate(in_both = purrr::map2_chr(.x = half1, .y = half2,
+                                   .f = ~intersect(str_split_1(.x, pattern = ""), 
+                                                   str_split_1(.y, pattern = "")))) |> 
+  mutate(is_lower = str_detect(in_both,"[[:lower:]]")) |> 
+  mutate(in_both = str_to_lower(in_both)) |> 
+  mutate(value = unlist(purrr::map(.x = in_both, .f = ~which(letters == .x)))) |>
+  mutate(value = as.numeric(value)) |> 
+  mutate(value = case_when(is_lower == FALSE ~ (26 + value),
+                          TRUE ~ value)) |> 
+  pull(value) |> 
+  sum()
+```
+
+#### Part 2
+
+```{r}
+#| echo: true
+#| eval: false
+#| message: false
+#| warning: false
+get_letter <- function(x) {
+  intersect(
+    intersect(
+      str_split_1(unlist(inputs_list[x][[1]]["V1"][1,]), pattern = ""),
+      str_split_1(unlist(inputs_list[x][[1]]["V1"][2,]), pattern = "")),
+    str_split_1(unlist(inputs_list[x][[1]]["V1"][3,]), pattern = ""))
+}
+inputs_list <- inputs |> 
+  mutate(group = rep(1:(nrow(inputs)/3), each = 3)) |> 
+  group_by(group) |> 
+  group_split() 
+tibble(letter = purrr::map_chr(.x = 1:(nrow(inputs)/3), .f = ~get_letter(.x))) |> 
+  mutate(is_lower = str_detect(letter,"[[:lower:]]")) |> 
+  mutate(letter = str_to_lower(letter)) |> 
+  mutate(value = unlist(purrr::map(.x = letter, .f = ~which(letters == .x)))) |>
+  mutate(value = as.numeric(value)) |> 
+  mutate(value = case_when(is_lower == FALSE ~ (26 + value),
+                           TRUE ~ value)) |> 
+  pull(value) |> 
+  sum()
+```

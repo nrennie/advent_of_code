@@ -1,0 +1,58 @@
+## R
+
+#### Part 1
+
+```{r}
+#| echo: true
+#| eval: false
+#| message: false
+#| warning: false
+library(dplyr)
+inputs <- read.delim("Data/data_02.txt", header = FALSE, sep = " ") |> 
+  tibble::as_tibble()
+inputs |> 
+  mutate(play_score = case_when(
+    V2 == "X" ~ 1,
+    V2 == "Y" ~ 2,
+    V2 == "Z" ~ 3
+  )) |> 
+  mutate(win_score = case_when(
+    V1 == "A" & V2 == "Y" | V1 == "B" & V2 == "Z" | V1 == "C" & V2 == "X"  ~ 6,
+    V1 == "A" & V2 == "X" | V1 == "B" & V2 == "Y" | V1 == "C" & V2 == "Z"~ 3,
+   TRUE ~ 0
+  )) |> 
+  mutate(total_score = play_score + win_score) |> 
+  pull(total_score) |> 
+  sum()
+```
+
+#### Part 2
+
+```{r}
+#| echo: true
+#| eval: false
+#| message: false
+#| warning: false
+inputs |> 
+  mutate(play_score = case_when(
+    V1 == "A" & V2 == "X" ~ 3, #Z
+    V1 == "A" & V2 == "Y" ~ 1, #X
+    V1 == "A" & V2 == "Z" ~ 2, #Y
+    
+    V1 == "B" & V2 == "X" ~ 1, #X
+    V1 == "B" & V2 == "Y" ~ 2, #Y
+    V1 == "B" & V2 == "Z" ~ 3, #Z
+    
+    V1 == "C" & V2 == "X" ~ 2, #Y
+    V1 == "C" & V2 == "Y" ~ 3, #Z
+    V1 == "C" & V2 == "Z" ~ 1  #X
+  )) |> 
+  mutate(win_score = case_when(
+    V2 == "X" ~ 0,
+    V2 == "Y" ~ 3,
+    V2 == "Z" ~ 6
+  )) |> 
+  mutate(total_score = play_score + win_score) |> 
+  pull(total_score) |> 
+  sum()
+```
