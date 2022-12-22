@@ -1,0 +1,76 @@
+## R
+
+#### Part 1
+
+```{r}
+#| echo: true
+#| eval: false
+#| message: false
+#| warning: false
+# prep grid stacking data
+inputs_a <- read.delim("Data/data_05_a.txt", header = FALSE, sep = "\t")
+to_remove <- stringr::str_locate_all(inputs_a[nrow(inputs_a), ], " ")[[1]][,"start"]
+df <- inputs_a |> 
+  tibble::as_tibble() |> 
+  pull(V1) |> 
+  stringr::str_split(pattern = "")
+M <- lapply(df, function(x) x[-to_remove]) |> 
+  lapply(str_flatten) |> 
+  lapply(function(x) str_remove_all(x, pattern = "\\[")) |> 
+  lapply(function(x) str_remove_all(x, pattern = "\\]")) |> 
+  lapply(function(x) str_replace_all(x, pattern = "   ", replacement = "-")) |> 
+  lapply(function(x) str_split(x, pattern = "")) |> 
+  unlist() |> 
+  matrix(nrow = nrow(inputs_a), byrow = T) |> 
+  t()
+M <- M[ ,c(ncol(M):1), drop = FALSE] 
+M_list <- lapply(seq_len(nrow(M)), function(i) M[i,])
+M_list <- lapply(M_list, function(z){ z[!is.na(z) & z != "-"]})
+# prep instructions
+inputs_b <- read.delim("Data/data_05_b.txt", header = FALSE, sep = ",") |> 
+  tibble::as_tibble()
+moves <- inputs_b |> 
+  separate(V1, into = c("what", "from"), sep = "from") |> 
+  separate(from, into = c("from", "to"), sep = "to") |> 
+  mutate(across(everything(), readr::parse_number))
+#carry out instructions
+grid <- M_list
+for (i in 1:nrow(moves)) {
+  # take last { what } elements from list element { from }, 
+  # reverse, and stick on end of list element { to }
+  from_list <- grid[[moves$from[i]]]
+  things_to_move <- rev(tail(from_list, n = moves$what[i]))
+  # remove from end of from list
+  grid[[moves$from[i]]] <- head(grid[[moves$from[i]]], -moves$what[i])
+  # append to end of new list
+  grid[[moves$to[i]]] <- c(grid[[moves$to[i]]], things_to_move)
+}
+# get last elements
+lapply(grid, function(x) tail(x, n = 1)) |> 
+  unlist() |> 
+  str_flatten()
+```
+
+#### Part 2
+
+```{r}
+#| echo: true
+#| eval: false
+#| message: false
+#| warning: false
+grid <- M_list
+for (i in 1:nrow(moves)) {
+  # take last { what } elements from list element { from }, 
+  # reverse, and stick on end of list element { to }
+  from_list <- grid[[moves$from[i]]]
+  things_to_move <- tail(from_list, n = moves$what[i])
+  # remove from end of from list
+  grid[[moves$from[i]]] <- head(grid[[moves$from[i]]], -moves$what[i])
+  # append to end of new list
+  grid[[moves$to[i]]] <- c(grid[[moves$to[i]]], things_to_move)
+}
+# get last elements
+lapply(grid, function(x) tail(x, n = 1)) |> 
+  unlist() |> 
+  str_flatten()
+```

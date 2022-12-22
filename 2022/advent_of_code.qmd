@@ -33,6 +33,17 @@ Code: [github.com/nrennie/advent_of_code](https://github.com/nrennie/advent_of_c
 
 {{< include day_04.qmd >}}
 
+<hr>
+
+# Day 5
+
+{{< include day_05.qmd >}}
+
+<hr>
+
+# Day 6
+
+{{< include day_06.qmd >}}
 
 
 
