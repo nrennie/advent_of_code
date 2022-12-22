@@ -1,0 +1,42 @@
+## R
+
+#### Part 1
+
+```{r}
+#| echo: true
+#| eval: false
+#| message: false
+#| warning: false
+library(tidyr)
+inputs <- read.delim("Data/data_04.txt", header = FALSE, sep = ",") |> 
+  tibble::as_tibble()
+get_seq <- function(start1, stop1, start2, stop2, ...) {
+  s1 <- seq(start1, stop1)
+  s2 <- seq(start2, stop2)
+  all(s1 %in% s2) | all(s2 %in% s1)
+}
+inputs |> 
+  separate(V1, into = c("start1", "stop1"), sep = "-") |> 
+  separate(V2, into = c("start2", "stop2"), sep = "-") |> 
+  purrr::pmap_lgl(get_seq) |> 
+  sum()
+```
+
+#### Part 2
+
+```{r}
+#| echo: true
+#| eval: false
+#| message: false
+#| warning: false
+get_seq2 <- function(start1, stop1, start2, stop2, ...) {
+  s1 <- seq(start1, stop1)
+  s2 <- seq(start2, stop2)
+  any(s1 %in% s2) | all(s2 %in% s1)
+}
+inputs |> 
+  separate(V1, into = c("start1", "stop1"), sep = "-") |> 
+  separate(V2, into = c("start2", "stop2"), sep = "-") |> 
+  purrr::pmap_lgl(get_seq2) |> 
+  sum()
+```
