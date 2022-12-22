@@ -2,7 +2,7 @@
 
 A repository containing code for Advent of Code challenges. Check out the challenge at [adventofcode.com](https://adventofcode.com/). 
 
-You can also see my solutions 
+You can also see my solutions on [Quarto Pub](https://nrennie.quarto.pub/advent-of-code-2022/).
 
 ## Day 1
 I wouldn't normally use a `for` loop for this type of problem in R, but I thought it would be interesting to compare R, Python, and Julia using the same method.
