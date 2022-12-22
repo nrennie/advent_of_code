@@ -1,0 +1,34 @@
+## R
+
+#### Part 1
+
+```{r}
+#| echo: true
+#| eval: false
+#| message: false
+#| warning: false
+inputs <- read.delim("Data/data_06.txt", header = FALSE, sep = "") |> 
+  tibble::as_tibble()
+input <- inputs |> 
+  stringr::str_split(pattern = "") |> 
+  unlist()
+values <- numeric(length = length(input))
+for (i in 4:length(input)) {
+  values[i] <- length(unique(input[(i-3):i]))
+}
+which(values == 4)[1]
+```
+
+#### Part 2
+
+```{r}
+#| echo: true
+#| eval: false
+#| message: false
+#| warning: false
+values <- numeric(length = length(input))
+for (i in 14:length(input)) {
+  values[i] <- length(unique(input[(i-13):i]))
+}
+which(values == 14)[1]
+```
