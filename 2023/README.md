@@ -7,3 +7,6 @@ Lots of use for {stringr} and regular expressions using `gregexpr()` and a looka
 
 ## Day 2
 Used `separate_wider_delim()` from {tidyr} to separate data into multiple columns, thereafter simple summary stats can compute the answer.
+
+## Day 3
+Lots of nested `for` loops and `if` statements.
