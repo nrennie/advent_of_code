@@ -10,3 +10,6 @@ Used `separate_wider_delim()` from {tidyr} to separate data into multiple column
 
 ## Day 3
 Lots of nested `for` loops and `if` statements.
+
+## Day 4
+Reasonably straightforward with a simple `for` loop.
