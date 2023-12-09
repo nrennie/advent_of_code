@@ -15,8 +15,17 @@ Lots of nested `for` loops and `if` statements.
 Reasonably straightforward with a simple `for` loop.
 
 ## Day 5
-Brute force solution. Need a bit more time to get part 2.
+Brute force solution. *Need a bit more time to get part 2*.
 
 ## Day 6
 Simple solution using the quadratic formula.
+
+## Day 7
+*Still to do*.
+
+## Day 8
+*Still to do*.
+
+## Day 9
+Making use of lists.
 
