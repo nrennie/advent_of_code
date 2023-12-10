@@ -24,7 +24,7 @@ Simple solution using the quadratic formula.
 *Still to do*.
 
 ## Day 8
-*Still to do*.
+First half straight forward with filter data sets. *Need a bit more time to get part 2*.
 
 ## Day 9
 Making use of lists.
