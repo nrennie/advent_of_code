@@ -24,7 +24,7 @@ Simple solution using the quadratic formula.
 Creating a custom ordering using factors, and `LETTERS`.
 
 ## Day 8
-First half straight forward with filter data sets. *Need a bit more time to get part 2*.
+First half straight forward with filter data sets, and a similar approach using lowest common multiples for second half.
 
 ## Day 9
 Making use of lists.
