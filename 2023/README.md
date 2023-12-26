@@ -21,7 +21,7 @@ Brute force solution. *Need a bit more time to get part 2*.
 Simple solution using the quadratic formula.
 
 ## Day 7
-*Still to do*.
+Creating a custom ordering using factors, and `LETTERS`.
 
 ## Day 8
 First half straight forward with filter data sets. *Need a bit more time to get part 2*.

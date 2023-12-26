@@ -4,7 +4,7 @@ A repository containing code for Advent of Code challenges. Check out the challe
 
 ## 2023
 
-(6 + (2 * 0.5)) /25 (so far...)
+(7 + (2 * 0.5)) /25 (so far...)
 
 Code: [https://github.com/nrennie/advent_of_code/tree/main/2023](https://github.com/nrennie/advent_of_code/tree/main/2023)
 
