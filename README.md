@@ -2,6 +2,12 @@
 
 A repository containing code for Advent of Code challenges. Check out the challenge at [adventofcode.com](https://adventofcode.com/). 
 
+## 2024
+
+1/25 (so far)
+
+Code: [https://github.com/nrennie/advent_of_code/tree/main/2024](https://github.com/nrennie/advent_of_code/tree/main/2024)
+
 ## 2023
 
 9.5/25

@@ -10,6 +10,7 @@
 2022/startup.jl
 2022/*.html
 2023/data/
+2024/data/
 
 # User-specific files
 .Ruserdata
@@ -25,7 +26,7 @@
 
 # RStudio files
 .Rproj.user/
-advent_of_code.Rproj
+advent-of-code.Rproj
 
 # produced vignettes
 vignettes/*.html
