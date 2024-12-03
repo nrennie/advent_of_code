@@ -7,3 +7,6 @@ Straightforward using `sort()`, `table()`, and multiplication.
 
 ## Day 2
 Using `diff()` and checking for sums of absolute values, and a conditional `for` loop in the second part.
+
+## Day 3
+Using regex to detect between a start and end string.
