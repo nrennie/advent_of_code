@@ -10,3 +10,6 @@ Using `diff()` and checking for sums of absolute values, and a conditional `for`
 
 ## Day 3
 Using regex to detect between a start and end string.
+
+## Day 5
+Lots of list processing, and using a clever trick for sorting based on the number of rules, rather than the values.
