@@ -11,5 +11,8 @@ Using `diff()` and checking for sums of absolute values, and a conditional `for`
 ## Day 3
 Using regex to detect between a start and end string.
 
+## Day 4
+Using simple string detection for Part 1, and then more traditional for loops for Part 2.
+
 ## Day 5
 Lots of list processing, and using a clever trick for sorting based on the number of rules, rather than the values.
