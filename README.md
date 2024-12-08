@@ -4,22 +4,22 @@ A repository containing code for Advent of Code challenges. Check out the challe
 
 ## 2024
 
-5/25 (so far)
+5/25
 
-Code: [https://github.com/nrennie/advent_of_code/tree/main/2024](https://github.com/nrennie/advent_of_code/tree/main/2024)
+Code: [https://github.com/nrennie/advent-of-code/tree/main/2024](https://github.com/nrennie/advent-of-code/tree/main/2024)
 
 ## 2023
 
 9.5/25
 
-Code: [https://github.com/nrennie/advent_of_code/tree/main/2023](https://github.com/nrennie/advent_of_code/tree/main/2023)
+Code: [https://github.com/nrennie/advent-of-code/tree/main/2023](https://github.com/nrennie/advent-of-code/tree/main/2023)
 
 
 ## 2022 
 
 6/25
 
-Code: [https://github.com/nrennie/advent_of_code/tree/main/2022](https://github.com/nrennie/advent_of_code/tree/main/2022)
+Code: [https://github.com/nrennie/advent-of-code/tree/main/2022](https://github.com/nrennie/advent-of-code/tree/main/2022)
 
 Quarto: [nrennie.quarto.pub/advent-of-code-2022/](https://nrennie.quarto.pub/advent-of-code-2022/)
 
@@ -28,4 +28,4 @@ Quarto: [nrennie.quarto.pub/advent-of-code-2022/](https://nrennie.quarto.pub/adv
 
 10/25
 
-Code: [https://github.com/nrennie/advent_of_code/tree/main/2021](https://github.com/nrennie/advent_of_code/tree/main/2021)
+Code: [https://github.com/nrennie/advent-of-code/tree/main/2021](https://github.com/nrennie/advent-of-code/tree/main/2021)
